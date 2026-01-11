@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog | Susamn">
+	<section class="space-y-12">
+		<header class="space-y-4">
+			<h1 class="text-4xl font-bold tracking-tight">Writing</h1>
+			<p class="text-lg text-slate-600 max-w-2xl">
+				Thoughts on software engineering, productivity, and building products.
+			</p>
+		</header>
+
+		<div class="grid gap-12">
+			{posts.map((post) => (
+				<article class="group relative flex flex-col items-start">
+					<h2 class="text-2xl font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+						<a href={`/blog/${post.slug}`}>
+							<span class="absolute -inset-y-4 -inset-x-4 z-0 scale-95 bg-slate-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl" />
+							<span class="relative z-10">{post.data.title}</span>
+						</a>
+					</h2>
+					<time class="relative z-10 order-first mb-3 flex items-center text-sm text-slate-400 pl-3.5" datetime={post.data.pubDate.toISOString()}>
+						<span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+							<span class="h-4 w-0.5 rounded-full bg-slate-200" />
+						</span>
+						{post.data.pubDate.toLocaleDateString('en-US', {
+							day: 'numeric',
+							month: 'long',
+							year: 'numeric',
+						})}
+					</time>
+					<p class="relative z-10 mt-2 text-slate-600 leading-relaxed">
+						{post.data.description}
+					</p>
+					<div class="relative z-10 mt-4 flex items-center text-sm font-semibold text-indigo-600">
+						Read article →
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+</Layout>

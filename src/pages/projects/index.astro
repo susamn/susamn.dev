@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Projects | Susamn">
+	<section class="space-y-12">
+		<header class="space-y-4">
+			<h1 class="text-4xl font-bold tracking-tight">Projects</h1>
+			<p class="text-lg text-slate-600 max-w-2xl">
+				A collection of tools, libraries, and products I've built and launched.
+			</p>
+		</header>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{projects.map((project) => (
+				<div class="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-500/5 transition-all flex flex-col">
+					<div class="flex flex-wrap gap-2 mb-6">
+						{project.data.tags.map(tag => (
+							<span class="px-2 py-1 bg-slate-50 text-slate-500 text-xs font-semibold rounded uppercase tracking-wider">
+								{tag}
+							</span>
+						))}
+					</div>
+					<h2 class="text-2xl font-bold mb-3 group-hover:text-indigo-600 transition-colors">
+						{project.data.title}
+					</h2>
+					<p class="text-slate-600 mb-8 leading-relaxed flex-grow">
+						{project.data.description}
+					</p>
+					<div class="flex gap-4 items-center">
+						{project.data.github && (
+							<a href={project.data.github} class="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+								GitHub
+							</a>
+						)}
+						{project.data.link && (
+							<a href={project.data.link} class="text-sm font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+								Live Demo →
+							</a>
+						)}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+</Layout>

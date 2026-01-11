@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About | Susamn">
+	<div class="grid md:grid-cols-[1fr_200px] gap-12 items-start">
+		<article class="prose prose-slate prose-lg text-slate-600 leading-relaxed">
+			<h1 class="text-3xl font-bold tracking-tight text-slate-900 mb-8">About Me</h1>
+			<p>
+				Hello! I'm Susamn. I've been building software for over 10 years, navigating the chaotic but exciting world of distributed systems and cloud infrastructure.
+			</p>
+			<p>
+				Currently, I work as a Senior Software Engineer, where I focus on developer tooling. My philosophy is simple: <strong>build tools that get out of the way</strong>. I believe the best infrastructure is the kind you don't have to think about.
+			</p>
+			<h3>What I do</h3>
+			<ul>
+				<li><strong>Engineering:</strong> I specialize in Go, Rust, and TypeScript. I love diving deep into performance optimization and system architecture.</li>
+				<li><strong>Open Source:</strong> I'm an active contributor. You'll often find me fixing bugs or improving documentation for the tools I use daily.</li>
+				<li><strong>Writing:</strong> I use this site to document my learnings. Writing helps me clarify my thoughts and (hopefully) help others solving similar problems.</li>
+			</ul>
+			<p>
+				When I'm not at the keyboard, I'm likely hiking, reading sci-fi, or trying to brew the perfect cup of coffee.
+			</p>
+		</article>
+		
+		<aside class="space-y-8 hidden md:block">
+			<div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+				<h3 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wider">Connect</h3>
+				<ul class="space-y-3 text-sm">
+					<li>
+						<a href="https://github.com" class="text-slate-600 hover:text-indigo-600 flex items-center gap-2 transition-colors">
+							GitHub ↗
+						</a>
+					</li>
+					<li>
+						<a href="https://twitter.com" class="text-slate-600 hover:text-indigo-600 flex items-center gap-2 transition-colors">
+							Twitter ↗
+						</a>
+					</li>
+					<li>
+						<a href="https://linkedin.com" class="text-slate-600 hover:text-indigo-600 flex items-center gap-2 transition-colors">
+							LinkedIn ↗
+						</a>
+					</li>
+					<li>
+						<a href="mailto:hello@example.com" class="text-slate-600 hover:text-indigo-600 flex items-center gap-2 transition-colors">
+							Email ↗
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+	</div>
+</Layout>

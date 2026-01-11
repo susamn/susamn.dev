@@ -1,0 +1,50 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<article class="prose prose-slate lg:prose-lg mx-auto max-w-none 
+		prose-h1:tracking-tight prose-h1:font-bold prose-h1:text-slate-900 prose-h1:mt-12 prose-h1:mb-6
+		prose-h2:tracking-tight prose-h2:font-bold prose-h2:text-slate-900 prose-h2:mt-12 prose-h2:mb-6
+		prose-h3:tracking-tight prose-h3:font-bold prose-h3:text-slate-900 prose-h3:mt-12 prose-h3:mb-6
+		prose-p:leading-relaxed prose-p:mb-6 prose-p:text-slate-700
+		prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:my-8
+		prose-code:text-indigo-600 prose-code:font-semibold
+		prose-pre-code:text-slate-200 prose-pre-code:font-normal">
+		<header class="mb-12 not-prose">
+			<time class="text-sm text-slate-500 mb-4 block" datetime={post.data.pubDate.toISOString()}>
+				{post.data.pubDate.toLocaleDateString('en-US', {
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric',
+				})}
+			</time>
+			<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+				{post.data.title}
+			</h1>
+			<p class="text-xl text-slate-600 leading-relaxed">
+				{post.data.description}
+			</p>
+		</header>
+		<div class="mt-8 border-t border-slate-100 pt-12">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style is:global>
+	/* Any additional global overrides can go here */
+</style>
