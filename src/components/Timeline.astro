@@ -1,0 +1,180 @@
+---
+import clientsData from '../data/experience/clients.json';
+import employersData from '../data/experience/employers.json';
+
+// Helper to parse "YYYY-MM" or "Mar 2023" into a Date object
+const parseDate = (dateStr: string) => {
+  if (!dateStr) return new Date();
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? new Date() : d;
+};
+
+// Normalize and sort data
+const processTimelineData = (data: any[]) => {
+  return data
+    .map(item => ({
+      name: item.name || item.client,
+      joined: parseDate(item.joined),
+      left: item.left ? parseDate(item.left) : null,
+      isCurrent: !item.left
+    }))
+    .sort((a, b) => a.joined.getTime() - b.joined.getTime()); // Ensure sorted chronologically
+};
+
+const clients = processTimelineData(clientsData);
+const employers = processTimelineData(employersData);
+
+// Calculate timeline bounds
+const allDates = [
+  ...clients.map(i => i.joined),
+  ...clients.map(i => i.left || new Date()),
+  ...employers.map(i => i.joined),
+  ...employers.map(i => i.left || new Date())
+];
+
+const minDate = new Date(Math.min(...allDates.map(d => d.getTime())));
+const maxDate = new Date(); 
+const totalDuration = maxDate.getTime() - minDate.getTime();
+
+const latestClientTime = Math.max(...clients.map(c => c.joined.getTime()));
+const latestEmployerTime = Math.max(...employers.map(e => e.joined.getTime()));
+
+// Helper to get left position (%)
+const getPosition = (date: Date) => {
+  return ((date.getTime() - minDate.getTime()) / totalDuration) * 100;
+};
+
+// Helper to format date for tooltip
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+};
+---
+
+<style>
+  @keyframes pulse-pause {
+    0% { transform: scale(1); opacity: 0.8; }
+    20% { transform: scale(3); opacity: 0; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+  .animate-pulse-pause {
+    animation: pulse-pause 5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+</style>
+
+<div class="w-full pt-12 pb-6 relative">
+  <div class="w-full px-2">
+    
+    <div class="relative space-y-6">
+      
+      {/* Clients Timeline (Amber - Complementary to Indigo) */}
+      <div class="relative h-1 flex items-center">
+        {/* Base Line */}
+        <div class="absolute w-full h-[2px] bg-slate-200"></div>
+
+        {/* Dotted Pre-start Line for Clients */}
+        {clients.length > 0 && clients[0].joined > minDate && (
+          <div 
+            class="absolute h-[2px] border-t-2 border-dotted border-slate-300"
+            style={{ 
+              left: '0%', 
+              width: `${getPosition(clients[0].joined)}%`,
+              top: '50%',
+              transform: 'translateY(-50%)'
+            }}
+          ></div>
+        )}
+        
+        {clients.map((item) => {
+          const start = getPosition(item.joined);
+          const end = getPosition(item.left || new Date());
+          const width = end - start;
+          const isLatest = item.joined.getTime() === latestClientTime;
+          const showLabel = isLatest && (latestClientTime > latestEmployerTime);
+
+          return (
+            <>
+              {/* Line Segment */}
+              <div 
+                class="absolute h-[2px] bg-amber-400 opacity-60"
+                style={{ left: `${start}%`, width: `${width}%` }}
+              ></div>
+
+              {/* Node & Tooltip */}
+              <div 
+                class="group absolute w-2.5 h-2.5 bg-amber-500 rounded-full border border-white shadow-sm cursor-pointer hover:scale-150 transition-transform z-10 -translate-x-1/2"
+                style={{ left: `${start}%` }}
+              >
+                {showLabel && (
+                  <span class="absolute inline-flex h-6 w-6 rounded-full bg-amber-400 opacity-75 animate-pulse-pause -top-[7px] -left-[7px] pointer-events-none"></span>
+                )}
+                
+                {/* Tooltip */}
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-amber-600 text-white text-[10px] rounded shadow-sm whitespace-nowrap z-50 pointer-events-none">
+                  <span class="font-bold">{item.name}</span> · <span>{formatDate(item.joined)}</span>
+                  <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-amber-600"></div>
+                </div>
+
+                {/* Persistent Label */}
+                {showLabel && (
+                  <div class="absolute bottom-full left-0 mb-1 ml-2 whitespace-nowrap text-[9px] text-slate-500 font-medium pointer-events-none italic">
+                    <div class="text-slate-900 font-bold leading-none not-italic">{item.name}</div>
+                    <div class="leading-none">{formatDate(item.joined)}</div>
+                  </div>
+                )}
+              </div>
+            </>
+          );
+        })}
+      </div>
+
+      {/* Employers Timeline (Teal) */}
+      <div class="relative h-1 flex items-center">
+        {/* Base Line */}
+        <div class="absolute w-full h-[2px] bg-slate-200"></div>
+
+        {employers.map((item) => {
+          const start = getPosition(item.joined);
+          const end = getPosition(item.left || new Date());
+          const width = end - start;
+          const isLatest = item.joined.getTime() === latestEmployerTime;
+          const showLabel = isLatest; // Always show for latest employer
+
+          return (
+            <>
+              {/* Line Segment */}
+              <div 
+                class="absolute h-[2px] bg-teal-500 opacity-60"
+                style={{ left: `${start}%`, width: `${width}%` }}
+              ></div>
+
+              {/* Node & Tooltip */}
+              <div 
+                class="group absolute w-2.5 h-2.5 bg-teal-600 rounded-full border border-white shadow-sm cursor-pointer hover:scale-150 transition-transform z-10 -translate-x-1/2"
+                style={{ left: `${start}%` }}
+              >
+                {showLabel && (
+                  <span class="absolute inline-flex h-6 w-6 rounded-full bg-teal-500 opacity-75 animate-pulse-pause -top-[7px] -left-[7px] pointer-events-none"></span>
+                )}
+
+                {/* Tooltip */}
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-teal-600 text-white text-[10px] rounded shadow-sm whitespace-nowrap z-50 pointer-events-none">
+                  <span class="font-bold">{item.name}</span> · <span>{formatDate(item.joined)}</span>
+                  <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-teal-600"></div>
+                </div>
+
+                {/* Persistent Label */}
+                {showLabel && (
+                  <div class="absolute top-full left-0 mt-1 ml-2 whitespace-nowrap text-[9px] text-slate-500 font-medium pointer-events-none italic">
+                    <div class="text-slate-900 font-bold leading-none not-italic">{item.name}</div>
+                    <div class="leading-none">{formatDate(item.joined)}</div>
+                  </div>
+                )}
+              </div>
+            </>
+          );
+        })}
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline.astro';
 
 const latestPosts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -13,7 +14,7 @@ const projects = (await getCollection('projects'))
 ---
 
 <Layout title="Susamn | Senior Software Engineer">
-	<section class="flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start md:items-center mb-16 md:mb-24">
+	<section class="flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start md:items-center mb-5">
 		<div class="flex-1 space-y-6">
 			<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
 				Hi, I'm Supratim.
@@ -45,6 +46,11 @@ const projects = (await getCollection('projects'))
 			/>
 		</div>
 	</section>
+
+	<div class="mb-4 md:mb-6">
+		<h2 class="sr-only">Experience Timeline</h2>
+		<Timeline />
+	</div>
 
 	<div class="grid md:grid-cols-2 gap-12 md:gap-20">
 		<section class="space-y-8">

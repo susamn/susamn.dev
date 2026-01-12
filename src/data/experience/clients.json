@@ -1,0 +1,36 @@
+[
+  {
+    "name": "SBI",
+    "joined": "2010-06",
+    "left": "2012-06"
+  },
+  {
+    "name": "TDC",
+    "joined": "2012-06",
+    "left": "2014-06"
+  },
+  {
+    "name": "Comcast",
+    "joined": "2014-06",
+    "left": "2021-05"
+  },
+  {
+    "name": "Fannie Mae",
+    "joined": "2021-05",
+    "left": "2021-12"
+  },
+  {
+    "name": "T-Mobile",
+    "joined": "2021-11",
+    "left": "2023-09"
+  },
+  {
+    "name": "T. Rowe",
+    "joined": "2023-09",
+    "left": "2024-12"
+  },
+  {
+    "name": "Capital One",
+    "joined": "2025-01"
+  }
+]
