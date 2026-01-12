@@ -24,9 +24,9 @@ const { title, description = "Senior Software Engineer Portfolio" } = Astro.prop
 	</head>
 	<body class="bg-slate-50 text-slate-900 font-['Inter',_sans-serif] selection:bg-indigo-100">
 		<div class="max-w-4xl mx-auto px-6 py-12 md:py-20">
-			<nav class="flex justify-between items-center mb-16">
+			<nav class="flex flex-col sm:flex-row justify-between items-center gap-6 mb-16">
 				<a href="/" class="text-xl font-bold tracking-tight hover:text-indigo-600 transition-colors">susamn.dev</a>
-				<div class="space-x-8 text-sm font-medium text-slate-600">
+				<div class="flex flex-wrap justify-center sm:justify-end gap-x-6 gap-y-2 text-sm font-medium text-slate-600">
 					<a href="/projects" class="hover:text-indigo-600 transition-colors">Projects</a>
 					<a href="/certifications" class="hover:text-indigo-600 transition-colors">Certifications</a>
 					<a href="/blog" class="hover:text-indigo-600 transition-colors">Writing</a>
