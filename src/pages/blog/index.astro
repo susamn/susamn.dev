@@ -5,44 +5,88 @@ import Layout from '../../layouts/Layout.astro';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+// Group posts by year
+const groupedPosts = posts.reduce((acc, post) => {
+	const year = post.data.pubDate.getFullYear().toString();
+	if (!acc[year]) acc[year] = [];
+	acc[year].push(post);
+	return acc;
+}, {} as Record<string, typeof posts>);
+
+const sortedYears = Object.keys(groupedPosts).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<Layout title="Blog | Susamn">
-	<section class="space-y-12">
-		<header class="space-y-4">
-			<h1 class="text-4xl font-bold tracking-tight">Writing</h1>
-			<p class="text-lg text-slate-600 max-w-2xl">
-				Thoughts on software engineering, productivity, and building products.
-			</p>
-		</header>
-
-		<div class="grid gap-12">
-			{posts.map((post) => (
-				<article class="group relative flex flex-col items-start">
-					<h2 class="text-2xl font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
-						<a href={`/blog/${post.slug}`}>
-							<span class="absolute -inset-y-4 -inset-x-4 z-0 scale-95 bg-slate-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl" />
-							<span class="relative z-10">{post.data.title}</span>
-						</a>
-					</h2>
-					<time class="relative z-10 order-first mb-3 flex items-center text-sm text-slate-400 pl-3.5" datetime={post.data.pubDate.toISOString()}>
-						<span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
-							<span class="h-4 w-0.5 rounded-full bg-slate-200" />
-						</span>
-						{post.data.pubDate.toLocaleDateString('en-US', {
-							day: 'numeric',
-							month: 'long',
-							year: 'numeric',
-						})}
-					</time>
-					<p class="relative z-10 mt-2 text-slate-600 leading-relaxed">
-						{post.data.description}
-					</p>
-					<div class="relative z-10 mt-4 flex items-center text-sm font-semibold text-indigo-600">
-						Read article →
-					</div>
-				</article>
-			))}
+<Layout title="Writing | Supratim Samanta">
+	<!-- Page Header -->
+	<header class="mb-10">
+		<div class="flex items-center gap-4 mb-2">
+			<h1 class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">Writing</h1>
+			<div class="flex-1 h-px bg-stone-200"></div>
 		</div>
-	</section>
+		<p class="text-stone-500 max-w-2xl">Thoughts on software engineering, productivity, and building products.</p>
+	</header>
+
+	<!-- Stats Banner -->
+	<div class="bg-gradient-to-br from-stone-100 via-stone-50 to-amber-50/30 rounded-2xl p-6 border border-stone-200/60 mb-10">
+		<div class="flex flex-wrap gap-8 justify-center md:justify-start">
+			<div class="text-center md:text-left">
+				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{posts.length}</div>
+				<div class="text-sm text-stone-500">Articles</div>
+			</div>
+			<div class="hidden md:block w-px bg-stone-200"></div>
+			<div class="text-center md:text-left">
+				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{sortedYears.length}</div>
+				<div class="text-sm text-stone-500">Years Writing</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Posts by Year -->
+	<div class="space-y-12">
+		{sortedYears.map((year) => (
+			<section>
+				<div class="flex items-center gap-4 mb-6">
+					<h2 class="font-['Fraunces',_serif] text-xl font-semibold text-stone-800">{year}</h2>
+					<div class="flex-1 h-px bg-stone-200"></div>
+					<span class="text-sm text-stone-400">{groupedPosts[year].length} article{groupedPosts[year].length > 1 ? 's' : ''}</span>
+				</div>
+				<div class="bg-white rounded-xl border border-stone-200 divide-y divide-stone-100">
+					{groupedPosts[year].map((post) => (
+						<article class="group">
+							<a href={`/blog/${post.slug}`} class="flex items-start gap-4 p-5 hover:bg-stone-50/50 transition-colors">
+								<div class="shrink-0 w-16 text-center pt-0.5">
+									<div class="text-2xl font-['Fraunces',_serif] font-semibold text-stone-300 group-hover:text-amber-400 transition-colors leading-none">
+										{post.data.pubDate.toLocaleDateString('en-US', { day: '2-digit' })}
+									</div>
+									<div class="text-[10px] font-medium text-stone-400 uppercase tracking-wider mt-1">
+										{post.data.pubDate.toLocaleDateString('en-US', { month: 'short' })}
+									</div>
+								</div>
+								<div class="flex-1 min-w-0">
+									<h3 class="font-semibold text-stone-900 group-hover:text-amber-700 transition-colors mb-1.5 leading-snug text-lg">
+										{post.data.title}
+									</h3>
+									<p class="text-sm text-stone-500 leading-relaxed line-clamp-2">{post.data.description}</p>
+								</div>
+								<div class="self-center hidden sm:flex items-center gap-2 text-xs font-medium text-amber-600 opacity-0 group-hover:opacity-100 transition-opacity">
+									<span>Read</span>
+									<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+									</svg>
+								</div>
+							</a>
+						</article>
+					))}
+				</div>
+			</section>
+		))}
+	</div>
+
+	<!-- Footer -->
+	<div class="mt-12 pt-8 border-t border-stone-200 text-center">
+		<p class="text-sm text-stone-400">
+			Subscribe via <a href="/rss.xml" class="text-amber-600 hover:text-amber-700 transition-colors">RSS</a> to stay updated
+		</p>
+	</div>
 </Layout>
