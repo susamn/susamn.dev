@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Timeline from '../components/Timeline.astro';
+import employers from '../data/experience/employers.json';
 
 const latestPosts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -11,6 +12,10 @@ const projects = (await getCollection('projects'))
 	.filter((project) => project.data.featured)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 4);
+
+const startDate = new Date('2010-06-01');
+const today = new Date();
+const experienceYears = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
 ---
 
 <Layout title="Susamn | Senior Software Engineer">
@@ -47,8 +52,13 @@ const projects = (await getCollection('projects'))
 		</div>
 	</section>
 
-	<div class="mb-4 md:mb-6">
-		<h2 class="sr-only">Experience Timeline</h2>
+	<div class="mb-8 mt-12">
+		<div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-2">
+			<h2 class="text-xl font-bold tracking-tight text-slate-900">Experience</h2>
+			<span class="text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+				{experienceYears}+ Years
+			</span>
+		</div>
 		<Timeline />
 	</div>
 
