@@ -66,29 +66,14 @@ const sortedYears = Object.keys(groupedCerts).sort((a, b) => parseInt(b) - parse
 		<div class="flex items-center gap-4 mb-2">
 			<h1 class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">Certifications</h1>
 			<div class="flex-1 h-px bg-stone-200"></div>
+			<div class="flex items-center gap-3 text-sm">
+				<span class="text-stone-500"><span class="font-semibold text-stone-700">{certifications.length}</span> certs</span>
+				<span class="text-stone-300">·</span>
+				<span class="text-stone-500"><span class="font-semibold text-amber-600">{new Set(certifications.map(c => c.issuer)).size}</span> issuers</span>
+			</div>
 		</div>
 		<p class="text-stone-500">Professional credentials and continuous learning</p>
 	</header>
-
-	<!-- Stats Banner -->
-	<div class="bg-gradient-to-br from-stone-100 via-stone-50 to-amber-50/30 rounded-2xl p-6 border border-stone-200/60 mb-10">
-		<div class="flex flex-wrap gap-8 justify-center md:justify-start">
-			<div class="text-center md:text-left">
-				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{certifications.length}</div>
-				<div class="text-sm text-stone-500">Certifications</div>
-			</div>
-			<div class="hidden md:block w-px bg-stone-200"></div>
-			<div class="text-center md:text-left">
-				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{sortedYears.length}</div>
-				<div class="text-sm text-stone-500">Years of Growth</div>
-			</div>
-			<div class="hidden md:block w-px bg-stone-200"></div>
-			<div class="text-center md:text-left">
-				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{new Set(certifications.map(c => c.issuer)).size}</div>
-				<div class="text-sm text-stone-500">Issuers</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Certifications by Year -->
 	<div class="space-y-10">

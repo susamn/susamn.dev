@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import techStackData from '../../data/tech-stack.json';
 
 const projects = (await getCollection('projects')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -8,6 +9,31 @@ const projects = (await getCollection('projects')).sort(
 
 const featuredProjects = projects.filter(p => p.data.featured);
 const otherProjects = projects.filter(p => !p.data.featured);
+
+// Color palette for tech items (cycles through)
+const colors = [
+	{ bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+	{ bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-200' },
+	{ bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+	{ bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200' },
+	{ bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+	{ bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
+	{ bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-200' },
+	{ bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200' },
+	{ bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+	{ bg: 'bg-lime-50', text: 'text-lime-700', border: 'border-lime-200' },
+];
+
+// Category header colors and icons
+const categoryConfig: Record<string, { bg: string; text: string; icon: string }> = {
+	'Languages': { bg: 'bg-amber-100', text: 'text-amber-600', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
+	'Frameworks': { bg: 'bg-violet-100', text: 'text-violet-600', icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z' },
+	'Data': { bg: 'bg-emerald-100', text: 'text-emerald-600', icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4' },
+	'Cloud': { bg: 'bg-sky-100', text: 'text-sky-600', icon: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z' },
+};
+
+// Get color for an item based on its index
+const getColor = (index: number) => colors[index % colors.length];
 ---
 
 <Layout title="Projects | Supratim Samanta">
@@ -16,24 +42,14 @@ const otherProjects = projects.filter(p => !p.data.featured);
 		<div class="flex items-center gap-4 mb-2">
 			<h1 class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">Projects</h1>
 			<div class="flex-1 h-px bg-stone-200"></div>
+			<div class="flex items-center gap-3 text-sm">
+				<span class="text-stone-500"><span class="font-semibold text-stone-700">{projects.length}</span> projects</span>
+				<span class="text-stone-300">·</span>
+				<span class="text-stone-500"><span class="font-semibold text-amber-600">{featuredProjects.length}</span> featured</span>
+			</div>
 		</div>
 		<p class="text-stone-500 max-w-2xl">A collection of tools, libraries, and products I've built and launched.</p>
 	</header>
-
-	<!-- Stats Banner -->
-	<div class="bg-gradient-to-br from-stone-100 via-stone-50 to-amber-50/30 rounded-2xl p-6 border border-stone-200/60 mb-10">
-		<div class="flex flex-wrap gap-8 justify-center md:justify-start">
-			<div class="text-center md:text-left">
-				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{projects.length}</div>
-				<div class="text-sm text-stone-500">Projects</div>
-			</div>
-			<div class="hidden md:block w-px bg-stone-200"></div>
-			<div class="text-center md:text-left">
-				<div class="font-['Fraunces',_serif] text-3xl font-semibold text-stone-900">{featuredProjects.length}</div>
-				<div class="text-sm text-stone-500">Featured</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Featured Projects -->
 	{featuredProjects.length > 0 && (
@@ -85,6 +101,43 @@ const otherProjects = projects.filter(p => !p.data.featured);
 			</div>
 		</section>
 	)}
+
+	<!-- Tech Stack Widget -->
+	<section class="mb-12">
+		<div class="flex items-center gap-4 mb-6">
+			<h2 class="font-['Fraunces',_serif] text-lg font-semibold text-stone-800">Tech Stack</h2>
+			<div class="flex-1 h-px bg-stone-200"></div>
+		</div>
+		<div class="bg-white rounded-xl border border-stone-200 p-5 md:p-6">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+				{techStackData.categories.map((category) => {
+					const config = categoryConfig[category.name] || { bg: 'bg-stone-100', text: 'text-stone-600', icon: 'M4 6h16M4 12h16M4 18h16' };
+					return (
+						<div class="space-y-3">
+							<div class="flex items-center gap-2">
+								<div class={`w-6 h-6 rounded ${config.bg} flex items-center justify-center`}>
+									<svg class={`w-3.5 h-3.5 ${config.text}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={config.icon} />
+									</svg>
+								</div>
+								<span class="text-xs font-semibold text-stone-500 uppercase tracking-wider">{category.name}</span>
+							</div>
+							<div class="flex flex-wrap gap-1.5">
+								{category.items.map((item, index) => {
+									const color = getColor(index);
+									return (
+										<span class={`px-2 py-1 text-[11px] font-medium ${color.bg} ${color.text} rounded border ${color.border}`}>
+											{item}
+										</span>
+									);
+								})}
+							</div>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	</section>
 
 	<!-- Other Projects -->
 	{otherProjects.length > 0 && (

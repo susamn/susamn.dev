@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "name": "Languages",
+      "icon": "code",
+      "items": ["Java", "Python", "Go", "JavaScript", "TypeScript"]
+    },
+    {
+      "name": "Frameworks",
+      "icon": "framework",
+      "items": ["Spring", "Vue.js", "Astro", "Node.js"]
+    },
+    {
+      "name": "Data",
+      "icon": "database",
+      "items": ["PostgreSQL", "Redis", "Kafka", "Spark"]
+    },
+    {
+      "name": "Cloud",
+      "icon": "cloud",
+      "items": ["AWS", "Kubernetes", "Docker", "Terraform", "Linux"]
+    }
+  ]
+}
