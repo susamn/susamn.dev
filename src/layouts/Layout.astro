@@ -24,19 +24,20 @@ const { title, description = "Senior Software Engineer Portfolio" } = Astro.prop
 	</head>
 	<body class="bg-stone-50 text-stone-900 font-['DM_Sans',_sans-serif] selection:bg-amber-100 antialiased">
 		<div class="max-w-5xl mx-auto px-6 py-8 md:py-12">
-			<nav class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12 pb-6 border-b border-stone-200">
+			<nav class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12 pb-6 border-b border-stone-200 print:hidden">
 				<a href="/" class="font-['Fraunces',_serif] text-2xl font-semibold tracking-tight text-stone-800 hover:text-amber-700 transition-colors">susamn<span class="text-amber-600">.</span>dev</a>
 				<div class="flex flex-wrap justify-center sm:justify-end gap-x-8 gap-y-2 text-sm font-medium text-stone-500">
 					<a href="/projects" class="hover:text-stone-900 transition-colors">Projects</a>
 					<a href="/certifications" class="hover:text-stone-900 transition-colors">Certifications</a>
 					<a href="/blog" class="hover:text-stone-900 transition-colors">Writing</a>
+					<a href="/resume" class="hover:text-stone-900 transition-colors">Resume</a>
 					<a href="/about" class="hover:text-stone-900 transition-colors">About</a>
 				</div>
 			</nav>
 			<main>
 				<slot />
 			</main>
-			<footer class="mt-20 pt-8 border-t border-stone-200 text-sm text-stone-400 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4">
+			<footer class="mt-20 pt-8 border-t border-stone-200 text-sm text-stone-400 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 print:hidden">
 				<p>© {new Date().getFullYear()} Supratim Samanta</p>
 				<div class="flex gap-6">
 					<a href="https://github.com/susamn" class="hover:text-stone-700 transition-colors">GitHub</a>

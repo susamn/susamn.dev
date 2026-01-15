@@ -1,0 +1,287 @@
+{
+  "personal_info": {
+    "name": "SUPRATIM SAMANTA",
+    "location": "Marlton, NJ",
+    "phone": "856-316-2799",
+    "email": "supratim.iee23.ju2005@gmail.com",
+    "links": {
+      "linktree": "https://susamn.dev"
+    }
+  },
+  "certifications": [
+    "Generative AI with Large Language Models",
+    "Introduction to Generative AI",
+    "AWS Certified Developer – Associate",
+    "Sun Certified Java 6 Developer"
+  ],
+  "opensource_projects": [
+    "helpful-tools-v2"
+  ],
+  "work_experience": [
+    {
+      "company": "Capital One",
+      "location": "Wilmington, DE",
+      "position": "Senior Software Developer (Data Engineering)",
+      "duration": "Jan 2025 - present",
+      "responsibilities": [
+        "Develop applications and web services in Java using Spring Framework and in Python with Flask utilizing RDBM like PostgreSQL and Oracle",
+        "Design, develop, test, and deploy AWS Glue jobs for ETL processing",
+        "Develop and manage step functions which interact with AWS Glue and Lambda functions",
+        "Develop deployment pipelines using github's workflow language, CloudFormation and deploy the solutions in AWS infrastructure",
+        "Write unit test cases with Cucumber, Gherkin, Mockito and powermock and make sure the code is covered 95% in terms of branch, line etc",
+        "Work with New Relic for open telemetry data and monitor and debug issues in glue job processing",
+        "Work with Jira and Confluence to manage and deliver project deliverables"
+      ],
+      "frameworks_and_tools": [
+        "Java",
+        "Scala",
+        "Spring Framework",
+        "Cucumber",
+        "Gherkin",
+        "Mockito",
+        "Python",
+        "Apache Spark",
+        "AWS Glue",
+        "AWS Lambda",
+        "AWS Stepfunction",
+        "AWS SQS",
+        "Aurora Postgresql",
+        "Oracle"
+      ]
+    },
+    {
+      "company": "T. Rowe",
+      "location": "Baltimore, MA",
+      "position": "Lead Software Developer & Senior Cloud Architect",
+      "duration": "Sep 2023 – Dec 2024",
+      "responsibilities": [
+        "Design, develop, test, and deploy services developed in Java and Python via GitLab, terraform to AWS ECS, and Lambda",
+        "Manage a sidecar deployment artifact in Golang and do modifications as per business need",
+        "Develop solutions and business rules with ServiceNow and implement API features",
+        "Deploy using Terraform and utilize Gitlab CICD for end-2-end deployment adhering to code quality using SonarQube",
+        "Work with vault, config sidecar lambda, and inhouse build lambda extension to configure the AWS Lambdas properly",
+        "Work fully in Linux Ubuntu as the development interface",
+        "Work with MySQL Aurora RDS to find issues and develop new changes",
+        "Work with Snowflake and implement data warehousing tasks",
+        "Write unit test cases with Mockito, Load tests with JMeter, Python tests with Pytest, and test using Insomnia"
+      ],
+      "frameworks_and_tools": [
+        "Java",
+        "Python",
+        "Golang",
+        "Snowflake",
+        "ServiceNow",
+        "PostgreSQL",
+        "Vault",
+        "Terraform",
+        "Gitlab",
+        "AWS Lambda",
+        "AWS RDS",
+        "AWS SQS",
+        "AWS EventBridge",
+        "AWS IAM"
+      ],
+      "challenges_and_achievements": [
+        "Improved a service response time processing financial data by 200 times, from 5 hours to 90 seconds by means of parallelization, query optimization, grouping database update, lazy loading"
+      ]
+    },
+    {
+      "company": "T-Mobile",
+      "location": "Atlanta, GA",
+      "position": "Senior Cyber Security & Fullstack Developer",
+      "duration": "Nov 2021 - Sep 2023",
+      "responsibilities": [
+        "Develop and manage security assessment tool for APIs in Golang",
+        "Develop microservices Java and AWS Lambdas in NodeJS to support workflow needs",
+        "Design security patterns and workflows for APIs and get them graded based on the TMobile security requirement",
+        "Lead the data harvesting solution in terms of design and implementation",
+        "Build REST web services in Java and Spring framework with Spring Security and Spring Boot",
+        "Work with AWS services like lambda, step function, event bridge, DynamoDB, RDS, API Gateway, S3, etc for the security assessment solution",
+        "Develop and deploy automation pipelines in Gitlab CI and CloudFormation and integrate them with the on-premise CI tool, jazz",
+        "Write unit tests and regression test cases to attain required code coverage and validate the same with SonarQube"
+      ],
+      "frameworks_and_tools": [
+        "Golang",
+        "Java",
+        "NodeJS",
+        "OWASP",
+        "TLS Certificates",
+        "Microservice",
+        "Gitlab CI",
+        "Groovy",
+        "AWS Lambda",
+        "AWS DynamoDB",
+        "AWS EC2",
+        "AWS KMS",
+        "AWS SQS",
+        "AWS EventBridge",
+        "AWS IAM"
+      ],
+      "challenges_and_achievements": [
+        "Designed and implemented data harvesting solution by means of intercepting real time transaction data from Apigee and feeding back to the solution that grades APIs of security standard levels",
+        "Improved and implemented the DevOPS pipeline to use newer version of SDKs while maintaining the CICD functionality seamless"
+      ]
+    },
+    {
+      "company": "Fannie Mae",
+      "location": "Reston, VA",
+      "position": "Fullstack Software Developer & Cloud Migration Specialist",
+      "duration": "May 2021 - Dec 2021",
+      "responsibilities": [
+        "Led a team as migration specialist for Autosys to AWS and worked on various codebases for the same using Python and AWS",
+        "Designed and implemented cloud infrastructure for Airflow in AWS with CloudFormation",
+        "Worked in a Java-based job orchestrator and deployed in AWS",
+        "Collaborated closely with AWS services such as Lambda, Step Functions, SSM documents, and ECS tasks to create robust and scalable cloud replacements for existing setups",
+        "Created Visor, an innovative network configuration tool meticulously designed to efficiently manage server attributes within racks using advanced technology and data-driven insights",
+        "Developed automation pipelines that streamlined operations and enhanced team efficiency",
+        "Executed unit and integration tests to ensure the reliability and performance of new systems"
+      ],
+      "frameworks_and_tools": [
+        "Python",
+        "Java",
+        "NodeJS",
+        "VueJS",
+        "Airflow",
+        "Autosys",
+        "Microservice",
+        "Bitbucket CI",
+        "AWS Lambda",
+        "AWS DynamoDB",
+        "AWS CloudFormation",
+        "AWS SQS",
+        "AWS EventBridge",
+        "AWS IAM",
+        "AWS Step function",
+        "AWS Elastic Beanstalk",
+        "AWS EC2",
+        "AWS ECS Fargate",
+        "AWS KMS"
+      ],
+      "challenges_and_achievements": [
+        "Migrated AutoSys and all python apps and solutions from on-premise to AWS infrastructure while keeping the workload scheduling intact and seamless to end consumers",
+        "Solved the SSO dilemma with AWS hosted Airflow and Fannie Mae SSO and did the initial onboarding of consumers migrating from AutoSys to Airflow",
+        "Built a webapp using VueJS and Python in 2 weeks' time to sunset the old application that used to manage network devices"
+      ]
+    },
+    {
+      "company": "Comcast",
+      "location": "Philadelphia, PA",
+      "position": "Lead Full stack Developer and Cloud Solution Engineer",
+      "duration": "June 2014 - May 2021",
+      "responsibilities": [
+        "Worked as lead developer for a video entitlement web service with Java and Spring boot used by several consumers and collaborated on changes and deployment",
+        "Handled change management, deployment, code quality, and code review using in-house CICD and Ansible scripts",
+        "Lead DataGrid application as an event-driven caching solution based on Hazelcast and Couchbase, significantly reducing the frequency of billing system calls for end consumers",
+        "Single-handedly designed and developed a data orchestration and aggregation solution – Genesis and GoldenEye using Golang and GraphQL federation to fix customer issues proactively",
+        "Developed UI application Spider using AngularJS and Golang to ease the triaging process for video entitlements",
+        "Monitored complex systems using advanced tools like Nagios and AppDynamics, proactively identifying potential bottlenecks before they escalated into critical operational problems",
+        "Deployed lambda, and generic applications in EC2 and utilized AWS SQS to channel messages, enhancing product availability and throughput",
+        "Build a code generation solution in Python to facilitate the CMT initiative in Comcast, making the whole process of onboarding a lot easier"
+      ],
+      "frameworks_and_tools": [
+        "Golang",
+        "Java",
+        "JavaScript",
+        "NodeJS",
+        "AngularJS",
+        "GraphQL",
+        "Openshift",
+        "AWS",
+        "Couchbase",
+        "Riak",
+        "Ansible",
+        "AppDynamics",
+        "AWS Lambda",
+        "AWS SQS",
+        "AWS Cloudwatch",
+        "AWS IAM",
+        "AWS EC2",
+        "AWS KMS"
+      ],
+      "challenges_and_achievements": [
+        "Designed and implemented a webapp e-2-e to audit data from different source using GraphQL and VueJS",
+        "Reduced data issues for end consumers utilizing entitlement data from LDAP by utilizing ping ldap library leveraging better transaction management"
+      ]
+    },
+    {
+      "company": "TDC",
+      "location": "Kolkata, WEST BENGAL",
+      "position": "Java and Web Developer",
+      "duration": "June 2012 - June 2014",
+      "responsibilities": [
+        "Built web services interfacing with Amdocs billing systems via JOLT protocol across three countries",
+        "Upgraded WebLogic server from 8.1 SP4 to 10.3.2, resolving critical issues and boosting performance",
+        "Transformed KVIKOC platform from JSF to AngularJS, modernizing user experience"
+      ],
+      "frameworks_and_tools": [
+        "Java",
+        "J2EE",
+        "Web Services",
+        "EJB",
+        "Spring",
+        "JMS",
+        "JOLT",
+        "WebLogic 10.3.2",
+        "WebLogic 8.1 SP4",
+        "SoapUI",
+        "LoadUI",
+        "Jenkins",
+        "SonarQube",
+        "HP Service Management"
+      ],
+      "challenges_and_achievements": [
+        "Migrated a webapp utilizing Richfaces and JSF to utilize angularJS and jquery"
+      ]
+    },
+    {
+      "company": "SBI",
+      "location": "Mumbai, Maharashtra",
+      "position": "Java Developer",
+      "duration": "June 2010 - June 2012",
+      "responsibilities": [
+        "Designed and developed KYC web application using JSP and J2EE, enhancing customer verification processes",
+        "Built monitoring portal for WebLogic, improving system oversight and efficiency",
+        "Created financial reports and deployed real-time web content for customers"
+      ],
+      "frameworks_and_tools": [
+        "Java",
+        "J2EE",
+        "CSS",
+        "JavaScript",
+        "PL/SQL",
+        "HTML",
+        "XML",
+        "Toad",
+        "NetBeans",
+        "WebLogic server",
+        "Oracle 10g",
+        "Eclipse 3.5"
+      ]
+    }
+  ],
+  "employment_history": [
+    {
+      "company": "TCS",
+      "employment_type": "Fulltime",
+      "location": "India",
+      "duration": "Dec 2009 - May 2021",
+      "description": "Contributed to multiple high-impact projects at TCS, showcasing adaptability and"
+    },
+    {
+      "company": "Compunnel",
+      "employment_type": "Fulltime",
+      "location": "USA",
+      "duration": "May 2021 - Present",
+      "description": "Joined Compunnel Inc. as Senior Cloud Architect & Developer, enhancing projects with innovative solutions"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Jadavpur University",
+      "location": "Kolkata, West Bengal",
+      "degree": "Bachelor Of Engineering",
+      "major": "Instrumentation & Electronics Engineering",
+      "graduation_year": 2009
+    }
+  ]
+}
