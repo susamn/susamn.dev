@@ -16,3 +16,6 @@ Shreddem is designed for bulk email cleanup. It uses IMAP to fetch email headers
 - **Bulk Actions:** Mass-delete thousands of emails with one click.
 - **Modern Stack:** Built with Python (FastAPI) and Vue 3.
 - **Dockerized:** Easy deployment using Docker and Docker Compose.
+
+#### Desktop Application
+A dedicated desktop application is currently under development to provide a more seamless experience for managing your inbox directly from your operating system. Stay tuned for updates on its release!
