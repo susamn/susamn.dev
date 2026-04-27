@@ -23,6 +23,7 @@ const projects = defineCollection({
 		productHunt: z.string().url().optional(),
 		featured: z.boolean().default(false),
 		tags: z.array(z.string()).default([]),
+		images: z.array(z.string()).optional(),
 	}),
 });
 

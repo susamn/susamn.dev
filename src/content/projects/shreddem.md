@@ -5,6 +5,7 @@ pubDate: "2026-04-11"
 featured: true
 github: "https://github.com/susamn/shreddem"
 tags: ["python", "vuejs", "fastapi", "sqlite", "docker", "imap", "productivity"]
+images: ["../../pages/projects/screenshots/shreddem/dashboard.png", "../../pages/projects/screenshots/shreddem/sender-view.png"]
 ---
 
 ### High-performance Gmail management tool
