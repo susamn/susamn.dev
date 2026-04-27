@@ -115,7 +115,7 @@ const experienceYears = Math.floor((today.getTime() - startDate.getTime()) / (10
 			<div class="space-y-4">
 				{projects.map((project, i) => (
 					<a
-						href={project.data.link || project.data.github}
+						href={`/projects/${project.slug}`}
 						class="group block bg-white rounded-xl border border-stone-200 p-5 hover:border-amber-300 hover:shadow-md transition-all duration-200"
 					>
 						<div class="flex items-start justify-between gap-3">
@@ -126,7 +126,7 @@ const experienceYears = Math.floor((today.getTime() - startDate.getTime()) / (10
 								<p class="text-sm text-stone-500 leading-relaxed line-clamp-2">{project.data.description}</p>
 							</div>
 							<svg class="w-4 h-4 text-stone-300 group-hover:text-amber-500 shrink-0 mt-1 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 							</svg>
 						</div>
 						<div class="flex flex-wrap gap-2 mt-3">
