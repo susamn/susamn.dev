@@ -14,7 +14,7 @@ const blog = defineCollection({
 
 const projects = defineCollection({
 	type: 'content',
-	schema: z.object({
+	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
@@ -23,7 +23,7 @@ const projects = defineCollection({
 		productHunt: z.string().url().optional(),
 		featured: z.boolean().default(false),
 		tags: z.array(z.string()).default([]),
-		images: z.array(z.string()).optional(),
+		images: z.array(image()).optional(),
 	}),
 });
 

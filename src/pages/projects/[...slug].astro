@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -99,7 +100,7 @@ const relatedProjects = allProjects
 						{project.data.images.map((image, index) => (
 							<div class="flex-none w-[85vw] md:w-[700px] snap-center">
 								<div class="bg-stone-100 rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-									<img
+									<Image
 										src={image}
 										alt={`${project.data.title} screenshot ${index + 1}`}
 										class="w-full h-auto object-cover"
